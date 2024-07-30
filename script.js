@@ -50,22 +50,79 @@ const gameBoard = (function(){
 
 //gameController controls the game and checks for winners
 const gameController = (function() {
+    //gameOver variable to check if game is over
+    let gameOver = false;
 
+    const toggleGameOver = () => {
+        if(gameOver == false)
+            gameOver = true;
+        else
+            gameOver = false;
+    }
+
+    const getGameOver = () => gameOver;
+
+    //click event handler on box
     markBoxes.forEach( box => {
         box.addEventListener("click", () => {
-            if(!gameBoard.board[index(box)-1]){
-                box.textContent = gameBoard.getActivePlayer().getMark();
-                gameBoard.board[index(box)-1] = gameBoard.getActivePlayer().getMark();
-                gameBoard.toggleActivePlayer();
-                console.log(gameBoard.getActivePlayer().getName());
-                console.log(gameBoard.board);
-            }else{
-                console.log("cant do that");
+            if(gameOver == false){
+                if(!gameBoard.board[index(box)-1]){
+                    box.textContent = gameBoard.getActivePlayer().getMark();
+                    gameBoard.board[index(box)-1] = gameBoard.getActivePlayer().getMark();
+                    console.log(checkWin());
+                    gameBoard.toggleActivePlayer();
+                    console.log(gameBoard.board);
+                }else{
+                    console.log("cant do that");
+                }
             }
         });
     });
 
-    return {  };
+    //check for winning condition
+    const checkWin = () => {
+        if(gameBoard.board[0]==gameBoard.board[4] && gameBoard.board[4]==gameBoard.board[8] && gameBoard.board[8]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}
+        else if(gameBoard.board[0]==gameBoard.board[1] && gameBoard.board[1]==gameBoard.board[2] && gameBoard.board[2]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}
+        else if(gameBoard.board[2]==gameBoard.board[5] && gameBoard.board[5]==gameBoard.board[8] && gameBoard.board[8]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}
+        else if(gameBoard.board[0]==gameBoard.board[3] && gameBoard.board[3]==gameBoard.board[6] && gameBoard.board[6]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}        
+        else if(gameBoard.board[2]==gameBoard.board[4] && gameBoard.board[4]==gameBoard.board[6] && gameBoard.board[6]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}        
+        else if(gameBoard.board[0]==gameBoard.board[1] && gameBoard.board[1]==gameBoard.board[2] && gameBoard.board[2]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}        
+        else if(gameBoard.board[0]==gameBoard.board[3] && gameBoard.board[3]==gameBoard.board[6] && gameBoard.board[6]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}        
+        else if(gameBoard.board[1]==gameBoard.board[4] && gameBoard.board[4]==gameBoard.board[7] && gameBoard.board[7]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}        
+        else if(gameBoard.board[2]==gameBoard.board[5] && gameBoard.board[5]==gameBoard.board[8] && gameBoard.board[8]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                return gameBoard.getActivePlayer().getName();}        
+        else if(gameBoard.board.includes(undefined))
+            return "Ongoing game";
+        return "Tied game";    
+    }
+
+    return { checkWin, toggleGameOver , getGameOver };
 })();
 
 
