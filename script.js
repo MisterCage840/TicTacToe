@@ -138,7 +138,11 @@ const gameController = (function() {
             {
                 toggleGameOver();
                 gameOverDisplay.textContent = gameBoard.getActivePlayer().getName() + " wins!"}       
-    
+        else if(gameBoard.board[6]==gameBoard.board[7] && gameBoard.board[7]==gameBoard.board[8] && gameBoard.board[8]==gameBoard.getActivePlayer().getMark())
+            {
+                toggleGameOver();
+                gameOverDisplay.textContent = gameBoard.getActivePlayer().getName() + " wins!"}
+
         else if(gameBoard.board.includes(undefined))
             gameOverDisplay.textContent = "Ongoing game";
         else{ 
