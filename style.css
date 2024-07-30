@@ -3,6 +3,7 @@
 :root{
     --default-font: Roboto, monospace;
     --default-size-font: 18pt;
+    --default-title-font: 20pt;
 }
 body{
     font-family: var(--default-font);
@@ -32,12 +33,15 @@ input{
     font-size: var(--default-size-font);
 }
 .gameView{
-    border: 1px solid black;
-    padding: 5px;
-    width: 30%;
+    width: fit-content;
     margin: auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 4fr 1fr;
 }
 .gamemarkBox{
+    border: 1px solid black;
+    padding: 5px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, minmax(auto,1fr));
@@ -46,4 +50,24 @@ input{
     border: 1px solid black;    
     background-color: aquamarine;
     padding: 60px;
+}
+.gameEnd {
+    font-size: var(--default-title-font);
+    color: red;
+}
+.playerTurn{
+    font-size: var(--default-size-font);
+}
+.resetBtn{
+    padding: 10px;
+    font-size: 1rem;
+}
+.resetNames {
+    padding: 10px;
+    font-size: 1rem;
+}
+.rightSide {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
 }
